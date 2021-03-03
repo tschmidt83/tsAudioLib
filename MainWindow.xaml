@@ -1,0 +1,34 @@
+﻿<Window x:Class="tsAudioLib.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:tsAudioLib"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib" 
+        xmlns:cat="clr-namespace:tsAudioLib.Categories"
+        mc:Ignorable="d"
+        Title="tsAudioLib" Height="450" Width="800"
+        d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=True}">
+
+    <Window.Resources>
+        <ObjectDataProvider x:Key="MyCategories"
+                MethodName="GetValues" 
+                ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="cat:CategoryType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+    </Window.Resources>
+
+    <Grid Name="root">
+        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Entries}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name}"/>
+                <!-- Category does not need to be editable here, can be edited in dialog. Then make this a normal text column. -->
+                <DataGridComboBoxColumn Header="Kategorie" Width="100" ItemsSource="{Binding Source={StaticResource MyCategories}}" SelectedItemBinding="{Binding Category}"/>
+                <DataGridTextColumn Header="Aufnahmedatum" Width="140" Binding="{Binding RecordDate}"/>
+                <DataGridTextColumn Header="Keywords" Width="*"/>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

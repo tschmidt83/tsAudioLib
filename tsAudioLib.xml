@@ -1,0 +1,129 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>tsAudioLib</name>
+    </assembly>
+    <members>
+        <member name="T:tsAudioLib.App">
+            <summary>
+            Interaction logic for App.xaml
+            </summary>
+            <summary>
+            App
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.App.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.App.Main">
+            <summary>
+            Application Entry Point.
+            </summary>
+        </member>
+        <member name="T:tsAudioLib.AudioEntry">
+            <summary>
+            This class represents an actual entry of the library
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.AudioEntry.Category">
+            <summary>
+            Audio category: sample, effect, atmo or music
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.AudioEntry.RecordDate">
+            <summary>
+            Date and time when the audio was recorded/created
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.AudioEntry.Name">
+            <summary>
+            Descriptive name
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.AudioEntry.Path">
+            <summary>
+            Path to the actual audio file
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.AudioEntry.Keywords">
+            <summary>
+            Collection of arbitrary keywords which are neither keyed nor categorized
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.AudioEntry.GetKeywords">
+            <summary>
+            Retrieves a comma-separated enumeration of all keywords
+            </summary>
+            <returns>Comma-separated keyword enumeration</returns>
+        </member>
+        <member name="T:tsAudioLib.Categories.CategoryType">
+            <summary>
+            Enumeration of possible audio types
+            </summary>
+        </member>
+        <member name="F:tsAudioLib.Categories.CategoryType.Sample">
+            <summary>
+            Marks a raw, unprocessed audio sample
+            </summary>
+        </member>
+        <member name="F:tsAudioLib.Categories.CategoryType.Effect">
+            <summary>
+            Marks a processed audio effect
+            </summary>
+        </member>
+        <member name="F:tsAudioLib.Categories.CategoryType.Atmo">
+            <summary>
+            Marks ambient/atmospheric recordings
+            </summary>
+        </member>
+        <member name="F:tsAudioLib.Categories.CategoryType.Music">
+            <summary>
+            This track is a whole song or a piece of actual music
+            </summary>
+        </member>
+        <member name="T:tsAudioLib.MainWindow">
+            <summary>
+            Interaction logic for MainWindow.xaml
+            </summary>
+            <summary>
+            MainWindow
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.MainWindow.Entries">
+            <summary>
+            Collection of library entries. For testing purposes, it resides inside the view. I might move it to a ViewModel if I decide to go totally MVVM...
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.#ctor">
+            <summary>
+            Default (empty) constructor
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
+        <member name="T:tsAudioLib.Meta">
+            <summary>
+            This class represents a collection of uncategorized metadata.
+            The actual metadata is represented as a dictionary, this class wraps some methods around it for easier access.
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.Meta.Data">
+            <summary>
+            Actual metadata
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Meta.Add(System.String,System.String)">
+            <summary>
+            Adds a metadata entry, if no entry with that key exists
+            </summary>
+            <param name="key">Metadata key</param>
+            <param name="value">Metadata value</param>
+            <returns>True if added successfully</returns>
+        </member>
+    </members>
+</doc>
