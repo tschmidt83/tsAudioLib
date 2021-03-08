@@ -7,28 +7,27 @@
         xmlns:sys="clr-namespace:System;assembly=mscorlib" 
         xmlns:cat="clr-namespace:tsAudioLib.Categories"
         mc:Ignorable="d"
-        Title="tsAudioLib" Height="450" Width="800"
-        d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=True}">
-
-    <Window.Resources>
-        <ObjectDataProvider x:Key="MyCategories"
-                MethodName="GetValues" 
-                ObjectType="{x:Type sys:Enum}">
-            <ObjectDataProvider.MethodParameters>
-                <x:Type TypeName="cat:CategoryType"/>
-            </ObjectDataProvider.MethodParameters>
-        </ObjectDataProvider>
-    </Window.Resources>
-
-    <Grid Name="root">
-        <DataGrid AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Entries}">
+        Title="tsAudioLib" Height="450" Width="860"
+        d:DataContext="{d:DesignInstance local:MainWindow, IsDesignTimeCreatable=False}" Closing="Window_Closing">
+  
+    <DockPanel Name="root">
+        <StackPanel DockPanel.Dock="Right">
+            <Button Content="Neuer Eintrag" Name="btnNewEntry" Click="btnNewEntry_Click"/>
+            <Button Content="Eintrag bearbeiten" Name="btnEditEntry" Click="btnEditEntry_Click"/>
+            <Button Content="Eintrag löschen" Name="btnRemoveEntry" Click="btnRemoveEntry_Click"/>
+            <Separator/>
+            <Button Content="Pfad kopieren" Name="btnCopyPath" Click="btnCopyPath_Click"/>
+            <Button Content="Datei kopieren" Name="btnCopyFile" Click="btnCopyFile_Click"/>
+        </StackPanel>
+        
+        <DataGrid DockPanel.Dock="Left" AutoGenerateColumns="False" CanUserAddRows="False" ItemsSource="{Binding Library.Entries, Mode=OneWay}" SelectedItem="{Binding SelectedLibraryEntry}">
             <DataGrid.Columns>
+                <!-- TODO: Sample rate, bit width, file length? -->
                 <DataGridTextColumn Header="Name" Width="200" Binding="{Binding Name}"/>
-                <!-- Category does not need to be editable here, can be edited in dialog. Then make this a normal text column. -->
-                <DataGridComboBoxColumn Header="Kategorie" Width="100" ItemsSource="{Binding Source={StaticResource MyCategories}}" SelectedItemBinding="{Binding Category}"/>
+                <DataGridTextColumn Header="Kategorie" Width="100" Binding="{Binding Category, Converter={StaticResource cv_Cat}}"/>
                 <DataGridTextColumn Header="Aufnahmedatum" Width="140" Binding="{Binding RecordDate}"/>
-                <DataGridTextColumn Header="Keywords" Width="*"/>
+                <DataGridTextColumn Header="Tags" Width="*" Binding="{Binding TagsEnumerated}"/>
             </DataGrid.Columns>
         </DataGrid>
-    </Grid>
+    </DockPanel>
 </Window>

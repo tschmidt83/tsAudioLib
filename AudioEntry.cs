@@ -30,19 +30,24 @@ namespace tsAudioLib
         public string Path { get; set; }
 
         /// <summary>
-        /// Collection of arbitrary keywords which are neither keyed nor categorized
+        /// Collection of arbitrary tags which are neither keyed nor categorized
         /// </summary>
-        public List<string> Keywords { get; set; } = new List<string>();
+        public List<string> Tags { get; set; } = new List<string>();
 
         /// <summary>
-        /// Retrieves a comma-separated enumeration of all keywords
+        /// Tags in enumerated form
+        /// </summary>
+        public string TagsEnumerated { get { return GetTags(); } }
+
+        /// <summary>
+        /// Retrieves a comma-separated enumeration of all tags
         /// </summary>
         /// <returns>Comma-separated keyword enumeration</returns>
-        public string GetKeywords()
+        public string GetTags()
         {
             string s = string.Empty;
 
-            foreach(string word in Keywords)
+            foreach(string word in Tags)
                 s += word + ", ";
 
             s = s.Trim();

@@ -47,14 +47,19 @@
             Path to the actual audio file
             </summary>
         </member>
-        <member name="P:tsAudioLib.AudioEntry.Keywords">
+        <member name="P:tsAudioLib.AudioEntry.Tags">
             <summary>
-            Collection of arbitrary keywords which are neither keyed nor categorized
+            Collection of arbitrary tags which are neither keyed nor categorized
             </summary>
         </member>
-        <member name="M:tsAudioLib.AudioEntry.GetKeywords">
+        <member name="P:tsAudioLib.AudioEntry.TagsEnumerated">
             <summary>
-            Retrieves a comma-separated enumeration of all keywords
+            Tags in enumerated form
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.AudioEntry.GetTags">
+            <summary>
+            Retrieves a comma-separated enumeration of all tags
             </summary>
             <returns>Comma-separated keyword enumeration</returns>
         </member>
@@ -83,6 +88,194 @@
             This track is a whole song or a piece of actual music
             </summary>
         </member>
+        <member name="T:tsAudioLib.Converters.CategoryStringConverter">
+            <summary>
+            Converts a category type to a string. The way back is not used because of localization.
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Converters.CategoryStringConverter.Convert(System.Object,System.Type,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            Convert category to string
+            </summary>
+            <param name="value">Input category</param>
+            <param name="targetType">Target type of conversion, only string implemented right now</param>
+            <param name="parameter">Converter parameter, will not be used</param>
+            <param name="culture">Not used, but might be used for localization</param>
+            <returns>Converted string</returns>
+        </member>
+        <member name="T:tsAudioLib.Database.AudioLibrary">
+            <summary>
+            This class contains the actual library and methods for adding/removing/searching
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.Database.AudioLibrary.Entries">
+            <summary>
+            Collection of library entries
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Database.AudioLibrary.#ctor">
+            <summary>
+            Default (empty) constructor
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Database.AudioLibrary.AddEntry(tsAudioLib.AudioEntry)">
+            <summary>
+            Adds an entry to the library
+            </summary>
+            <param name="entry">Entry to add</param>
+        </member>
+        <member name="M:tsAudioLib.Database.AudioLibrary.RemoveEntry(tsAudioLib.AudioEntry)">
+            <summary>
+            Remove one specific entry from the library
+            </summary>
+            <param name="entry">Entry to remove</param>
+        </member>
+        <member name="M:tsAudioLib.Database.AudioLibrary.LoadLibrary">
+            <summary>
+            Load library from default location
+            </summary>
+            <returns>True if loaded successful</returns>
+        </member>
+        <member name="M:tsAudioLib.Database.AudioLibrary.SaveLibrary">
+            <summary>
+            Save library to default location
+            </summary>
+            <returns>True if saved successful</returns>
+        </member>
+        <member name="T:tsAudioLib.Database.XmlDatabase">
+            <summary>
+             Simple XML-based library
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Database.XmlDatabase.#ctor">
+            <summary>
+            Default (empty) constructor
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.Database.XmlDatabase.Save(System.Collections.Generic.IEnumerable{tsAudioLib.AudioEntry})">
+            <summary>
+            Save database to xml file
+            </summary>
+            <param name="entries">IEnumerable of entries to save</param>
+            <returns>True if successul</returns>
+        </member>
+        <member name="M:tsAudioLib.Database.XmlDatabase.Load(System.Collections.Generic.IEnumerable{tsAudioLib.AudioEntry}@)">
+            <summary>
+            Load library entries from XML file
+            </summary>
+            <param name="entries">(out) IEnumerable of loaded entries</param>
+            <returns>True if loaded successful</returns>
+        </member>
+        <member name="T:tsAudioLib.EditEntryWindow">
+            <summary>
+            Interaction logic for EditEntryWindow.xaml
+            </summary>
+            <summary>
+            EditEntryWindow
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.Path">
+            <summary>
+            Path/Location of audio file
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.Category">
+            <summary>
+            Audio entry category
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.AudioName">
+            <summary>
+            Audio file name
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.RecordDate">
+            <summary>
+            Date and time when the audio was recorded/created
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.EnumeratedTags">
+            <summary>
+            Enumerated (comma-separated) tags
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.EditEntryWindow.AvailableCategories">
+            <summary>
+            Available categories
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.#ctor">
+            <summary>
+            Default (empty) constructor
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.#ctor(tsAudioLib.AudioEntry)">
+            <summary>
+            Constructor which initializes the dialog with a library entry
+            </summary>
+            <param name="entry">Entry for initialization</param>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.PopulateCategories">
+            <summary>
+            Populate the category selection box
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.CreateEntry(tsAudioLib.AudioEntry@)">
+            <summary>
+            Create a library entry from the dialog entries
+            </summary>
+            <param name="entry">(out) Created audio entry</param>
+            <returns>True if created successful</returns>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.ModifyEntry(tsAudioLib.AudioEntry@)">
+            <summary>
+            Modify an existing library entry with dialog entries
+            </summary>
+            <param name="entry">(ref) Existing audio entry</param>
+            <returns>True if created successful</returns>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.BrowseFile">
+            <summary>
+            Browse file, and set path according to file's path
+            </summary>
+        </member>
+        <member name="E:tsAudioLib.EditEntryWindow.PropertyChanged">
+            <summary>
+            INotifyPropertyChanged member
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.RaisePropertyChanged(System.String)">
+            <summary>
+            INotifyPropertyChanged member
+            </summary>
+            <param name="prop"></param>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.btnBrowse_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: browse file path
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.btnOK_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: dialog OK
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.btnCancel_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: dialog cancel
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.EditEntryWindow.InitializeComponent">
+            <summary>
+            InitializeComponent
+            </summary>
+        </member>
         <member name="T:tsAudioLib.MainWindow">
             <summary>
             Interaction logic for MainWindow.xaml
@@ -91,15 +284,73 @@
             MainWindow
             </summary>
         </member>
-        <member name="P:tsAudioLib.MainWindow.Entries">
+        <member name="P:tsAudioLib.MainWindow.Library">
             <summary>
-            Collection of library entries. For testing purposes, it resides inside the view. I might move it to a ViewModel if I decide to go totally MVVM...
+            Wrapper for actual library, provides methods for adding/removing/searching
+            </summary>
+        </member>
+        <member name="P:tsAudioLib.MainWindow.SelectedLibraryEntry">
+            <summary>
+            Currently selected library entry
             </summary>
         </member>
         <member name="M:tsAudioLib.MainWindow.#ctor">
             <summary>
             Default (empty) constructor
             </summary>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.Window_Closing(System.Object,System.ComponentModel.CancelEventArgs)">
+            <summary>
+            UI callback: window closing, save library
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.btnNewEntry_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: create new entry
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.btnEditEntry_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: edit selected entry
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.btnRemoveEntry_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: remove selected entry
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.btnCopyPath_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: copy path of current entry
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.btnCopyFile_Click(System.Object,System.Windows.RoutedEventArgs)">
+            <summary>
+            UI callback: copy file
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="E:tsAudioLib.MainWindow.PropertyChanged">
+            <summary>
+            INotifyPropertyChanged member
+            </summary>
+        </member>
+        <member name="M:tsAudioLib.MainWindow.RaisePropertyChanged(System.String)">
+            <summary>
+            INotifyPropertyChanged member
+            </summary>
+            <param name="prop"></param>
         </member>
         <member name="M:tsAudioLib.MainWindow.InitializeComponent">
             <summary>
@@ -124,6 +375,36 @@
             <param name="key">Metadata key</param>
             <param name="value">Metadata value</param>
             <returns>True if added successfully</returns>
+        </member>
+        <member name="T:XamlGeneratedNamespace.GeneratedInternalTypeHelper">
+            <summary>
+            GeneratedInternalTypeHelper
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateInstance(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            CreateInstance
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.GetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            GetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.SetPropertyValue(System.Reflection.PropertyInfo,System.Object,System.Object,System.Globalization.CultureInfo)">
+            <summary>
+            SetPropertyValue
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.CreateDelegate(System.Type,System.Object,System.String)">
+            <summary>
+            CreateDelegate
+            </summary>
+        </member>
+        <member name="M:XamlGeneratedNamespace.GeneratedInternalTypeHelper.AddEventHandler(System.Reflection.EventInfo,System.Object,System.Delegate)">
+            <summary>
+            AddEventHandler
+            </summary>
         </member>
     </members>
 </doc>
